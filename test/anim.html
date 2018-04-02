@@ -43,35 +43,37 @@ TweenMax.staggerFrom(selector/node, duration, properties, delay)
 TweenMax.staggerFromTo(selector/node, duration, fromProperties, toProperties, delay)
             */
 
-            let startbtn = document.querySelector(".svgForAnim .startBtn");
-            let wheels = document.querySelectorAll(".svgForAnim .wheel");
-            let display = document.querySelector(".svgForAnim .displayLayer");
-            let displaybox = document.querySelector(".svgForAnim .displayBox");
-            let car = document.querySelector(".svgForAnim .car");
-            let svgImg = document.querySelector(".svgForAnim .svgImg");
-            let timeline = new TimelineMax();
-            let timeline2 = new TimelineMax();
-            startbtn.addEventListener("click",function(event){
-                timeline.to(display, 0.4, {opacity: 1})
-                .to(wheels, 2, {
-                    rotation: -360,
-                    transformOrigin:"50% 50%",
-                    ease:Linear.easeNone,
-                    repeat:-1,
-                    delay: 0.5
-                })
-                .to(car, 26, {
-                    x: -1000,
-                    ease:Linear.easeNone
+            setTimeout(function(){
+                let startbtn = document.querySelector(".svgForAnim .startBtn");
+                let wheels = document.querySelectorAll(".svgForAnim .wheel");
+                let display = document.querySelector(".svgForAnim .displayLayer");
+                let displaybox = document.querySelector(".svgForAnim .displayBox");
+                let car = document.querySelector(".svgForAnim .car");
+                let svgImg = document.querySelector(".svgForAnim .svgImg");
+                let timeline = new TimelineMax();
+                let timeline2 = new TimelineMax();
+                startbtn.addEventListener("click",function(event){
+                    timeline.to(display, 0.4, {opacity: 1})
+                    .to(wheels, 2, {
+                        rotation: -360,
+                        transformOrigin:"50% 50%",
+                        ease:Linear.easeNone,
+                        repeat:-1,
+                        delay: 0.5
+                    })
+                    .to(car, 26, {
+                        x: -1000,
+                        ease:Linear.easeNone
+                    });
+                    timeline2.to(svgImg, 10, {
+                        css: {width: "150%", height: "150%", top: "-25%", left: "-10%"},
+                        ease:Power2.easeInOut,
+                        delay: 1
+                    })
+                    .to(display, 0.4, {opacity: 0, delay: 12})
+                    .to(displaybox, 0.2, {opacity: 0});
                 });
-                timeline2.to(svgImg, 10, {
-                    css: {width: "150%", height: "150%", top: "-25%", left: "-10%"},
-                    ease:Power2.easeInOut,
-                    delay: 1
-                })
-                .to(display, 0.4, {opacity: 0, delay: 12})
-                .to(displaybox, 0.2, {opacity: 0});
-            });
+            },2000)
         </script>
     </body>
 </html>
