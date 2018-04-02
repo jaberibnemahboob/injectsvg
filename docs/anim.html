@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Text SVG Animation</title>
+
+        <style>
+            .centered{width: 100%; max-width: 500px; margin: 0 auto;}
+            .displayBox{position: relative; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #DEDEDE;}
+            .layer{position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+            .displayLayer{background: whitesmoke; opacity: 0;}
+            .displaySizer{position: relative; top: 0; left: 0; padding: 50%; background: white;}
+            .svgHolder{overflow: hidden; width: 100%; height: 100%;}
+            .svgImg{position: relative; top: -200%; left: -400%; width: 500%; height: 500%; border: 1px solid red; }
+            .startBtn{position: relative; top: 80%; left: 35%; padding: 0.2em 4em;}
+
+        </style>
+    </head>
+    <body>
+        <main class="centered svgForAnim">
+            <div class="displayBox">
+                <div class="displaySizer">
+                    &nbsp;
+                </div>
+                <div class="displayLayer layer">
+                    <img class="svgHolder injectsvg" src="images/drivingcarAnim.svg"/>
+                </div>
+                <div class="actionLayer layer">
+                    <button class="startBtn">Start</button>
+                </div>
+            </div>
+        </main>
+
+        <script type="text/javascript" src="dist/js/injectsvg.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+        <script>
+            /*
+TweenMax.to(selector/node, duration, properties)
+TweenMax.from(selector/node, duration, properties)
+TweenMax.fromTo(selector/node, duration, fromProperties, toProperties)
+TweenMax.staggerTo(selector/node, duration, properties, delay)
+TweenMax.staggerFrom(selector/node, duration, properties, delay)
+TweenMax.staggerFromTo(selector/node, duration, fromProperties, toProperties, delay)
+            */
+
+            let startbtn = document.querySelector(".svgForAnim .startBtn");
+            let wheels = document.querySelectorAll(".svgForAnim .wheel");
+            let display = document.querySelector(".svgForAnim .displayLayer");
+            let displaybox = document.querySelector(".svgForAnim .displayBox");
+            let car = document.querySelector(".svgForAnim .car");
+            let svgImg = document.querySelector(".svgForAnim .svgImg");
+            let timeline = new TimelineMax();
+            let timeline2 = new TimelineMax();
+            startbtn.addEventListener("click",function(event){
+                timeline.to(display, 0.4, {opacity: 1})
+                .to(wheels, 2, {
+                    rotation: -360,
+                    transformOrigin:"50% 50%",
+                    ease:Linear.easeNone,
+                    repeat:-1,
+                    delay: 0.5
+                })
+                .to(car, 26, {
+                    x: -1000,
+                    ease:Linear.easeNone
+                });
+                timeline2.to(svgImg, 10, {
+                    css: {width: "150%", height: "150%", top: "-25%", left: "-10%"},
+                    ease:Power2.easeInOut,
+                    delay: 1
+                })
+                .to(display, 0.4, {opacity: 0, delay: 12})
+                .to(displaybox, 0.2, {opacity: 0});
+            });
+        </script>
+    </body>
+</html>

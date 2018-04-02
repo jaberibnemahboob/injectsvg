@@ -9,8 +9,8 @@ To use Inject SVG simply add 'injectsvg.min.js' script from distribution directo
 <script src="dist/js/injectsvg.min.js"></script>
 ```
 
-## Examples
-This example how easy to apply css rule on the svg element after the script is properly installed. Link to this example [here](https://jaberibnemahboob.github.io/injectsvg/index.htm).
+## Examples 1
+This example how easy to apply css rule on the svg element after the script is properly installed. Link to this example [here](https://jaberibnemahboob.github.io/injectsvg/index.html).
 ```
 <img class="injectsvg" src="images/drivingcar.svg" alt="SVG file"/>
 
@@ -22,6 +22,12 @@ This style will change the color of svg visual element. Make sure, you have defi
     .topRailing{fill:#999999;}
     .carBody{fill:#990000;}
 </style>`
+
+## Examples 1
+This is an advance example with animation applied on svg element while using the svg with img tag [here](https://jaberibnemahboob.github.io/injectsvg/anim.html).
+```
+<img class="injectsvg" src="images/drivingcar.svg" alt="SVG file"/>
+```
 
 ## License
 The code is available under the [MIT License](LICENSE).
